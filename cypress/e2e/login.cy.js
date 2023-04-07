@@ -49,4 +49,16 @@ describe('Login', () => {
     loginPage.elements.error().should('contain','This phone number is invalid')
   })
 
+  it('Validate regsiter link redirects to register page', () => {
+    
+  })
+
+  it('Validate password reset link redirects to password reset page', () => {
+    
+  })
+
+  it('Validate remeber me remembers user credentials', () => {
+    
+  })
+
 })
