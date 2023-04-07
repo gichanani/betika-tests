@@ -1,0 +1,26 @@
+{
+  "name": "betika_test",
+  "version": "1.0.0",
+  "description": "UI test and API tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gichanani/betika-tests.git"
+  },
+  "keywords": [
+    "tests"
+  ],
+  "author": "Nicholas Gichana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gichanani/betika-tests/issues"
+  },
+  "homepage": "https://github.com/gichanani/betika-tests#readme",
+  "devDependencies": {
+    "cypress": "^12.9.0",
+    "cypress-xpath": "^2.0.1"
+  }
+}
