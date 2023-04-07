@@ -7,13 +7,27 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
+import loginPage from '../support/pom/loginPage'
+const account = require('../fixtures/user.json')
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 //
 //
 // -- This is a child command --
+Cypress.Commands.add('usersession', () => {
+    cy.session('betika', () => {
+    cy.visit('/')
+    loginPage.elements.loginTop()
+    loginPage.elements.username().type(account.testaccount)
+    loginPage.elements.password().type(account.password)
+    loginPage.elements.loginBtn()
+    cy.location('pathname').should('contain','en-ke')
+    loginPage.elements.logo().should('be.visible')
+    })
+})
+
+
 Cypress.Commands.add('randomgames', () => { 
         // Loop through 10 games
         for (let i = 0; i < 10; i++) {
@@ -27,8 +41,7 @@ Cypress.Commands.add('randomgames', () => {
       
                 // Click the button and confirm the selection
                 randomButton.trigger('click')
-              });
-      
+              })
         });
       }
 })

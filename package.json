@@ -4,7 +4,14 @@
   "description": "UI test and API tests",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run"
+    "test": "npx cypress run",
+    "cy:run": "npx cypress run --env allure=true",
+    "clean:reports": "rm -R -f allure-report/* && rm -R -f allure-results/*",
+    "before:test": "npm run clean:reports",
+    "tests": "npm run cy:run || npm run after:test",
+    "after:test": "npm run allure:report",
+    "allure:report": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "allure:generate": "allure generate allure-results"
   },
   "repository": {
     "type": "git",
@@ -20,7 +27,11 @@
   },
   "homepage": "https://github.com/gichanani/betika-tests#readme",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.38.3",
     "cypress": "^12.9.0",
     "cypress-xpath": "^2.0.1"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.21.0"
   }
 }
