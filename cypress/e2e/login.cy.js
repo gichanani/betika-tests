@@ -15,7 +15,7 @@ describe('Login', () => {
     loginPage.elements.error().should('contain','Please enter a phone number')
   })
 
-  it.only('Validate required password field', () => {
+  it('Validate required password field', () => {
     loginPage.elements.username().type(account.testaccount)
     loginPage.elements.loginBtn()
     loginPage.elements.error().should('contain','Please enter a password')
