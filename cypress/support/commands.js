@@ -15,22 +15,34 @@ const account = require('../fixtures/user.json')
 //
 //
 // -- This is a child command --
-Cypress.Commands.add('usersession', () => {
+Cypress.Commands.add('betikasession', () => {
     cy.session('betika', () => {
+        cy.visit('/')
+        loginPage.elements.loginTop()
+        loginPage.elements.username().type(account.testaccount)
+        loginPage.elements.password().type(account.password)
+        loginPage.elements.loginBtn()
+        cy.wait(5000)
+        cy.location('pathname').should('contain','en-ke')
+        loginPage.elements.logo().should('be.visible')
+    })
+})
+
+Cypress.Commands.add('login', () => {
     cy.visit('/')
     loginPage.elements.loginTop()
     loginPage.elements.username().type(account.testaccount)
     loginPage.elements.password().type(account.password)
     loginPage.elements.loginBtn()
+    cy.wait(5000)
     cy.location('pathname').should('contain','en-ke')
     loginPage.elements.logo().should('be.visible')
-    })
 })
 
 
-Cypress.Commands.add('randomgames', () => { 
+Cypress.Commands.add('multibet', () => { 
         // Loop through 10 games
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 2; i++) {
             // Find the game container
             cy.get('.prebet-match__odd-market__container').eq(i).within(() => {
       
@@ -44,6 +56,23 @@ Cypress.Commands.add('randomgames', () => {
               })
         });
       }
+})
+
+Cypress.Commands.add('singlebet', () => { 
+    
+        // Find the game container
+        cy.get('.prebet-match__odd-market__container').eq(0).within(() => {
+  
+          cy.wait(500).get('.prebet-match__odd').then(buttons => {
+            // Select a random button
+            const randomIndex = Math.floor(Math.random() * buttons.length);
+            const randomButton = buttons.eq(randomIndex);
+  
+            // Click the button and confirm the selection
+            randomButton.trigger('click')
+          })
+    });
+  
 })
 //
 //

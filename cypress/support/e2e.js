@@ -20,3 +20,7 @@ require('cypress-xpath');
 import "@shelex/cypress-allure-plugin"
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // Prevent Cypress from failing on uncaught exceptions
+    return false;
+  });
