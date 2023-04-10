@@ -61,7 +61,15 @@ describe('Betslip', () => {
     loginPage.elements.notification().should('contain','Bet Placement Successful')
   })
 
-  it.skip('Verify that the user account balance is correctly updated after placing a bet', () => {
+  it('Verify that the user account balance is correctly updated after placing a bet', () => {
+    cy.allure().severity('blocker')
+    cy.login()
+    cy.visit('/s/soccer')
+    cy.multibet()
+    cy.visit('/betslip')
+    bettingPage.elements.betamount().type('{backspace}{backspace}')
+    bettingPage.elements.placebet().click()
+    loginPage.elements.notification().should('contain','Bet Placement Successful')
     
   })
 
