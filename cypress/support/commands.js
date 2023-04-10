@@ -19,8 +19,8 @@ Cypress.Commands.add('betikasession', () => {
     cy.session('betika', () => {
         cy.visit('/')
         loginPage.elements.loginTop()
-        loginPage.elements.username().type(account.testaccount)
-        loginPage.elements.password().type(account.password)
+        loginPage.elements.username().type(account.testaccount1)
+        loginPage.elements.password().type(account.password1)
         loginPage.elements.loginBtn()
         cy.wait(5000)
         cy.location('pathname').should('contain','en-ke')
@@ -31,8 +31,8 @@ Cypress.Commands.add('betikasession', () => {
 Cypress.Commands.add('login', () => {
     cy.visit('/')
     loginPage.elements.loginTop()
-    loginPage.elements.username().type(account.testaccount)
-    loginPage.elements.password().type(account.password)
+    loginPage.elements.username().type(account.testaccount1)
+    loginPage.elements.password().type(account.password1)
     loginPage.elements.loginBtn()
     cy.wait(5000)
     cy.location('pathname').should('contain','en-ke')

@@ -4,7 +4,7 @@ class login {
         password: () => cy.get("input[type='password']"),
         loginBtn: () => cy.contains('button','Login').click({timeout:60000}),
         loginTop: () => cy.get('.outline').click(),
-        notification: () => cy.get('.notification'),
+        notification: () => cy.get("#notifications-root"),
         error: () => cy.get('.text-error'),
         logo: () => cy.get('.topnav__left > .logo__image'),
         forgotpassword: () => cy.get('.session__form__link'),
