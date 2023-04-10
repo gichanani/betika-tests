@@ -118,7 +118,7 @@ describe('Betslip', () => {
     loginPage.elements.notification().should('contain','Max stake exceeded')
   })
 
-  it.only('Cancelling betslip before game starts', () => {
+  it('Failed betslip cancellation before game starts', () => {
     cy.login()
     cy.visit('/s/soccer')
     cy.singlebet()
@@ -126,9 +126,32 @@ describe('Betslip', () => {
     bettingPage.elements.betamount().type('{backspace}{backspace}')
     bettingPage.elements.placebet().click()
     cy.visit('/mybets')
-    cy.get('.bets > :nth-child(1)').click()
-    cy.wait(3000)
-    cy.get('.betdetails__summary__actions__item__progress__cancel').click()
-  })
-
+    cy.get('.my-bets-bet--id').eq(0).invoke('text').then( (text) => {
+      const cleanedText = text.replace(/[^\w\s]/gi, ''); 
+      const betid = cleanedText.slice(0, 12);
+      cy.visit(`https://www.betika.com/en-ke/b/${betid}`);
+      cy.get('.betdetails__summary__actions__item__progress__cancel').click()
+      cy.get('.confirm-dialogue__ok-btn').click()
+      loginPage.elements.notification().should('contain','Sorry, bet cancel was not allowed. Invalid. Betika T&c apply.')
+    })
+  })  
+    
+  it('Successful betslip cancellation before game starts', () => {
+    cy.login()
+    cy.visit('/s/soccer')
+    cy.singlebet()
+    cy.visit('/betslip')
+    bettingPage.elements.betamount().type('{backspace}')
+    bettingPage.elements.placebet().click()
+    cy.wait(2000)
+    cy.visit('/mybets')
+    cy.get('.my-bets-bet--id').eq(0).invoke('text').then( (text) => {
+      const cleanedText = text.replace(/[^\w\s]/gi, ''); 
+      const betid = cleanedText.slice(0, 12);
+      cy.visit(`https://www.betika.com/en-ke/b/${betid}`);
+      cy.get('.betdetails__summary__actions__item__progress__cancel').click()
+      cy.get('.confirm-dialogue__ok-btn').click()
+      loginPage.elements.notification().should('contain','Bet cancel successfully accepted, you will receive confirmation shortly.')
+    })
+  }) 
 })
