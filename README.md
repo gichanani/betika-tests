@@ -4,7 +4,7 @@ This project uses Node.js and Cypress for testing, and Allure Report Plugin for 
 
 To get started, please follow these instructions:
 
-#Installation
+# Installation
     1. First, install Node.js.
     2. Clone the project from the repo
     3. Open the project in you preferred IDE
