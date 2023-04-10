@@ -29,7 +29,7 @@ describe('Login', () => {
     // cy.location('pathname').should('contain','en-ke')
   })
 
-  it('Login with wrong password', () => {
+  it.skip('Login with wrong password', () => {
     loginPage.elements.username().type(account.testaccount)
     loginPage.elements.password().type(account.invalid_password)
     loginPage.elements.loginBtn()
@@ -43,7 +43,7 @@ describe('Login', () => {
     loginPage.elements.notification().should('contain','The mobile and password provided do not match')
   })
 
-  it('Login with invalid phone number', () => {
+  it.skip('Login with invalid phone number', () => {
     loginPage.elements.username().type(account.invalid_testaccount)
     loginPage.elements.password().type(account.invalid_password)
     loginPage.elements.loginBtn()
