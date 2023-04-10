@@ -7,11 +7,13 @@ describe('Betslip', () => {
   //   cy.betikasession()
   // })
   it('Navigate to betslip page', () => {
+    cy.allure().severity('blocker')
     cy.visit('/betslip')
     //cy.visit('/betslip', {timeout:60000})
   })
 
   it('Verify that a user can add a single selection to their betslip', () => {
+    cy.allure().severity('blocker')
     cy.visit('/s/soccer')
     cy.singlebet()
     cy.visit('/betslip')
@@ -19,6 +21,7 @@ describe('Betslip', () => {
   })
 
   it('Verify that a user can add multiple selections to their betslip', () => {
+    cy.allure().severity('blocker')
     cy.visit('/s/soccer')
     cy.multibet()
     cy.visit('/betslip')
@@ -26,6 +29,7 @@ describe('Betslip', () => {
   })
   
   it('Verify that a user can remove a selection from their betslip', () => {
+    cy.allure().severity('blocker')
     cy.visit('/s/soccer')
     cy.multibet()
     cy.visit('/betslip')
@@ -34,6 +38,7 @@ describe('Betslip', () => {
   })
 
   it('Verify that the user is prompted to confirm their bet before placing it.', () => {
+    cy.allure().severity('critical')
     cy.login()
     cy.visit('/s/soccer')
     cy.singlebet()
@@ -46,6 +51,7 @@ describe('Betslip', () => {
   })
 
   it('Verify that the user receives a confirmation message after placing a bet.', () => {
+    cy.allure().severity('critical')
     cy.login()
     cy.visit('/s/soccer')
     cy.singlebet()
@@ -60,6 +66,7 @@ describe('Betslip', () => {
   })
 
   it('Login and place a single bet successfully', () => {
+    cy.allure().severity('blocker')
     cy.login()
     cy.visit('/s/soccer')
     cy.singlebet()
@@ -70,6 +77,7 @@ describe('Betslip', () => {
   })
 
   it('Place a single bet without being logged in', () => {
+    cy.allure().severity('critical')
     cy.visit('/s/soccer')
     cy.singlebet()
     cy.visit('/betslip')
@@ -80,6 +88,7 @@ describe('Betslip', () => {
   })
 
   it('Login and place multibet', () => {
+    cy.allure().severity('blocker')
     cy.login()
     cy.visit('/s/soccer')
     cy.multibet()
@@ -90,6 +99,7 @@ describe('Betslip', () => {
   })
 
   it('Place a multi bet without being logged in', () => {
+    cy.allure().severity('critical')
     cy.visit('/s/soccer')
     cy.multibet()
     cy.visit('/betslip')
@@ -100,6 +110,7 @@ describe('Betslip', () => {
   })
 
   it('Place bet with less than minimum stake limit', () => {
+    cy.allure().severity('blocker')
     cy.visit('/s/soccer')
     cy.singlebet()
     cy.visit('/betslip')
@@ -109,6 +120,7 @@ describe('Betslip', () => {
   })
 
   it('Place bet with amount exceeding wallet balance', () => {
+    cy.allure().severity('blocker')
     cy.login()
     cy.visit('/s/soccer')
     cy.singlebet()
@@ -119,6 +131,7 @@ describe('Betslip', () => {
   })
 
   it('Failed betslip cancellation before game starts', () => {
+    cy.allure().severity('critical')
     cy.login()
     cy.visit('/s/soccer')
     cy.singlebet()
@@ -137,6 +150,7 @@ describe('Betslip', () => {
   })  
     
   it('Successful betslip cancellation before game starts', () => {
+    cy.allure().severity('critical')
     cy.login()
     cy.visit('/s/soccer')
     cy.singlebet()
