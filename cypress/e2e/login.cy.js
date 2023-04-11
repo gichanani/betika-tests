@@ -29,7 +29,7 @@ describe('Login', () => {
     loginPage.elements.username().type(account.testaccount)
     loginPage.elements.password().type(account.password)
     loginPage.elements.loginBtn()
-    // loginPage.elements.notification().should('contain','Loggged in')
+    loginPage.elements.notification().should('contain','Loggged in')
     // cy.location('pathname').should('contain','en-ke')
   })
 
